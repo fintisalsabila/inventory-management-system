@@ -1,0 +1,25 @@
+<%- include ('partials/_header') %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/stock/update/<%=report_data.report_id%>" method="post">
+                        <div class="form-group">
+                            <input type="date" name="date" value="<%=report_data.date%>" placeholder="Month (01/05/2021)" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="description" value="<%=report_data.description %>" placeholder="Description" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Edit report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

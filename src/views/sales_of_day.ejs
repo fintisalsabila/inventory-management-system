@@ -1,0 +1,86 @@
+<%- include ('partials/_header') %>
+
+<div class="container mt-2">
+    <div class="title">
+        <h2>
+            <span class="badge badge-primary">
+                DAY
+                <%= info_day.day %>
+                /
+                <%= info_day.month %>
+                /
+                <%= info_day.year %>
+            </span>
+        </h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-lg-8">
+            <h3>Products <i class="fas fa-shopping-cart"></i></h3>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>n°</th>
+                            <th>Product</th>
+                            <th>Value</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%  var total=0; %>
+                        <% if (product_data) { %>
+                            <% for (var i=0; i < product_data.length; i++){ %>
+                                <% sub_total = product_data[i].product_value * product_data[i].product_quantity%>
+                                <% total += sub_total%>
+                            <tr>
+                                <td><%= (i+1) %></td>
+                                <td><%= product_data[i].product_product %></td>
+                                <td><%= product_data[i].product_value %></td>
+                                <td><%= product_data[i].product_quantity %></td>
+                                <td><%= sub_total %></td>
+                                <td>
+                                    <a href="/sales/update/<%= info_day.day %>/<%=info_day.month%>/<%= info_day.year %>/<%= product_data[i].product_id %>" class="btn btn-warning">EDIT</a>
+                                    <a href="/sales/delete/<%= info_day.day %>/<%=info_day.month%>/<%= info_day.year %>/<%= product_data[i].product_id %>" class="btn btn-danger">DELETE</a>
+                                </td>
+                            </tr>
+                            <%} %>
+                        <%} %>
+                    </tbody>
+                </table>
+            </div>        
+        <div class="card mt-3">
+            <div class="card-body text-center">   
+                <h3>TOTAL: <%= total %> $</h3>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Add a product <i class="fas fa-plus-circle"></i></h3>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/sales/add_product/<%= info_day.day %>/<%=info_day.month%>/<%= info_day.year %>" method="post">
+                        <div class="form-group">
+                            <input type="text" name="product_product" placeholder="Product" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="product_value" placeholder="Value" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="product_quantity" placeholder="Quantity" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Save product
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

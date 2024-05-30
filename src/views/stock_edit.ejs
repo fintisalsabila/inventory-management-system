@@ -1,0 +1,28 @@
+<%- include ('partials/_header') %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/stock/<%= stock_data.report_id %>/update/<%= stock_data.stock_id %>" method="post">
+                        <div class="form-group">
+                            <input type="text" name="stock_product" value="<%=stock_data.stock_product%>" placeholder="Product" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="stock_value" value="<%=stock_data.stock_value%>" placeholder="Value" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="stock_quantity" value="<%=stock_data.stock_quantity%>" placeholder="Quantity" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Edit product
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

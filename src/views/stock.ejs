@@ -1,0 +1,56 @@
+<%- include ('partials/_header') %>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <h3>Reports <i class="fas fa-clipboard-list"></i></h3>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% var total = 0; %>
+                    <% if (report_data) { %>
+                        <% for (var i = 0; i < report_data.length; i++) { %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= new Date(report_data[i].date).toLocaleDateString("en-GB") %></td>
+                                <td><%= report_data[i].description %></td>
+                                <td>
+                                    <a href="/stock/<%= report_data[i].report_id %>" class="btn btn-success">VIEW</a>
+                                    <a href="/stock/update/<%= report_data[i].report_id %>" class="btn btn-warning">EDIT</a>
+                                    <a href="/stock/delete/<%= report_data[i].report_id %>" class="btn btn-danger">DELETE</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h3>Add a report <i class="far fa-clipboard"></i></h3>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/stock/add_report" method="post">
+                        <div class="form-group">
+                            <input type="date" name="date" placeholder="Date (01/05/2021)" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="description" placeholder="Description" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            SAVE REPORT
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

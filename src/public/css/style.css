@@ -1,0 +1,70 @@
+.root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar{
+    padding: 2% 2%;
+    background: #343940;
+    border-radius: 1%;
+    width: 100%;
+    max-width: 100%;
+    font-family: sans-serif;
+}
+
+.calendar-header{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    margin-bottom: 6%;
+}
+
+.calendar .control{
+    color: white;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0% 2%;
+}
+
+.grid-header, .grid-body{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.grid-header{
+    color: white;
+    margin-bottom: 4%;
+}
+
+.grid-body{
+    grid-auto-rows: 35px;
+    color: white;
+}
+.grid-cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.grid-cell-gd{
+    cursor: pointer;
+}
+.grid-cell-gd:hover{
+    background-color: rgb(105, 100, 100);
+    text-decoration: none;
+}
+.grid-cell-disabled{
+    color: #707070a9;
+    cursor: not-allowed;
+    text-decoration: none;
+    pointer-events: none;
+}
+.center-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
